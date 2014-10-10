@@ -1,0 +1,149 @@
+<{include file="./../header.html"}>
+<!--header end-->
+<div id="mainbody">
+		<div class="info">
+				<figure> <img src="<{$PUBLICPATH}>images/art1.jpg"  alt="Panama Hat">
+						<figcaption><strong><{$ImageTextTitle}></strong><{$ImageTextContent}></figcaption>
+				</figure>
+				<div class="card">
+						<h1>我的名片</h1>
+						<p>网名：<{$user_name}></p>
+						<p>职业：<{$user_profession}></p>
+						<p>手机：123456789</p>
+						<p>Email：<{$user_email}></p>
+						<ul class="linkmore">
+								<li><a href="edit.php" class="talk" title="添加博客"></a></li>
+								<{if $islogin eq "false" }>
+								<li><a href="login.php?act=login" class="address" title="登录"></a></li>
+								<{else}>
+								<li><a href="login.php?act=logout" class="address" title="退出登录"></a></li>
+								<{/if}>
+								<li><a href="signup.php" class="heart" title="注册"></a></li>
+						</ul>
+				</div>
+		</div>
+		<!--info end-->
+		<div class="blank"></div>
+		<div class="blogs">
+				<ul class="bloglist">
+				<{foreach from=$articlearray key=i item=row}>
+					<{if is_array($row)}>
+						<li>
+								<div class="arrow_box">
+										<div class="ti"></div>
+										<!--三角形-->
+										<div class="ci"></div>
+										<!--圆形-->
+										<h2 class="title"><a href="showarticle.php?article_id=<{$row[0]}>" target=""><{$row[1]}></a></h2>
+										<ul class="textinfo">
+												<a href="showarticle.php?article_id=<{$row[0]}>"><img src="<{$UPLOADPATH}>images/<{$row[5]}>"></a>
+												<p> <{$row[3]|mb_truncate:150}></p>
+										</ul>
+										<div>
+										<ul class="details">
+												<li class="likes"><a href="#"><{$row[8]}></a></li>
+												<li class="comments"><a href="#"><{$row[9]}></a></li>
+												<li class="icon-time"><a href="#"><{$row[7]}></a></li>
+										</ul>
+										</div>
+								</div>
+								<!--arrow_box end--> 
+						</li>
+					<{else}>
+						Nothing
+					<{/if}>
+				<{foreachelse}>
+						<li>
+								<div class="arrow_box">
+										<div class="ti"></div>
+										<!--三角形-->
+										<div class="ci"></div>
+										<!--圆形-->
+										<h2 class="title"><a href="" target="_blank"></a></h2>
+										<ul class="textinfo">
+											
+												<a href="/"><img src="<{$PUBLICPATH}>images/s1.jpg"></a>
+												<p> <{$article_content}></p>
+											
+										</ul>
+										<ul class="details">
+												<li class="likes"><a href="">0</a></li>
+												<li class="comments"><a href="">0</a></li>
+												<li class="icon-time"><a href="">2014-9-24</a></li>
+										</ul>
+								</div>
+								<!--arrow_box end--> 
+						</li>
+				<{/foreach}>		
+				</ul>
+				<!--bloglist end-->
+				<aside>
+						<div class="search">
+								<form class="searchform" method="get" action="#">
+										<input type="text" name="s" value="Search" onfocus="this.value=''" onblur="this.value='Search'">
+								</form>
+						</div>
+						<div class="tuijian">
+								<h2>最新文章</h2>
+								<ol>
+									<{foreach from=$newarticles key=i item=row}>
+									<li><span><strong><{$i+1}></strong></span><a href="showarticle.php?article_id=<{$row[0]}>"><{$row[1]}></a></li>
+									<{foreachelse}>	
+									<li><span><strong>1</strong></span><a href="#">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
+									<li><span><strong>2</strong></span><a href="#">励志人生-要做一个潇洒的女人</a></li>
+									<li><span><strong>3</strong></span><a href="#">女孩都有浪漫的小情怀——浪漫的求婚词</a></li>
+									<li><span><strong>4</strong></span><a href="#">Green绿色小清新的夏天-个人博客模板</a></li>
+									<li><span><strong>5</strong></span><a href="#">女生清新个人博客网站模板</a></li>
+									<li><span><strong>6</strong></span><a href="#">Wedding-婚礼主题、情人节网站模板</a></li>
+									<li><span><strong>7</strong></span><a href="#">Column 三栏布局 个人网站模板</a></li>
+									<li><span><strong>8</strong></span><a href="#">时间煮雨-个人网站模板</a></li>
+									<li><span><strong>9</strong></span><a href="#">花气袭人是酒香—个人网站模板</a></li>
+									<{/foreach}>
+										
+								</ol>
+						</div>
+						<div class="toppic">
+								<h2>分类博客</h2>
+								<ul>
+										<{foreach from=$categorys key=i item=value}>
+										<li><a href="morearticle.php?category=<{$value[0]}>"><img src="<{$PUBLICPATH}>images/k02.jpg" ><{$value[0]}>
+												<p><{$value[1]}></p>
+											</a>
+										</li>
+										<{foreachelse}>	
+										<li><a href="#"><img src="<{$PUBLICPATH}>images/k01.jpg">
+												<p>unfinish</p>
+												</a></li>
+										<{/foreach}>
+								</ul>
+						</div>
+						<div class="clicks">
+								<h2>最新注册</h2>
+								<ol>	
+									<{foreach from=$users key=i item=value}>
+									<li><span><a href="morearticle.php?user=<{$value[0]}>"><{$value[0]}></a></span><a href="morearticle.php?user=<{$value[0]}>"><{$value[4]}></a></li>
+									<{foreachelse}>	
+									<{/foreach}>
+								</ol>
+						</div>
+						
+						<div class="viny">
+								<dl>
+										<dt class="art"><img src="<{$PUBLICPATH}>images/just.jpg" alt="专辑"></dt>
+										<dd class="icon-song"><span></span>Just One Last Dance</dd>
+										<dd class="icon-artist"><span></span>歌手：Sarah Connor</dd>
+										<dd class="icon-album"><span></span>发行时间：2004-03-01</dd>
+										<dd class="icon-like"><span></span><a href="/">喜欢</a></dd>
+										<dd class="music">
+												<audio src="<{$PUBLICPATH}>music/Sarah Connor-Just One Last Dance1.mp3" controls loop></audio>
+										</dd>
+										<!--也可以添加loop属性 音频加载到末尾时，会重新播放-->
+								</dl>
+						</div>
+						
+				</aside>
+		</div>
+		<!--blogs end--> 
+</div>
+<!--mainbody end-->
+<{include file="./../footer.html"}>

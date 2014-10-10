@@ -1,0 +1,90 @@
+<{include file="./../header.html"}>
+<!--header end-->
+<div id="mainbody">
+  <div class="blogs">
+    <div class="newlist">
+  <h2><span>
+  <!--
+      <a href="#">div+css</a>
+      <a href="#">心得笔记</a>
+      <a href="#">ASP</a>
+      <a href="#">IP查询</a>
+      <a href="#">JS经典实例</a>
+      <a href="#">html5资讯</a> -->
+</span>您当前的位置：<a href="index.php">首页</a>&nbsp;>&nbsp;<a href="#"><{$whichpage}></a></h2>
+     <ul>
+		<{foreach from=$articlearray key=i item=row}>
+		<{if is_array($row)}>
+		<p class="ptit"><b><a href="showarticle.php?article_id=<{$row[0]}>" target="" title=" <{$row[1]}>"> <{$row[1]}> </a></b></p>
+		<p class="ptime">发布时间：<{$row[7]}> 作者：<{$row[2]}>  分类：<{$row[6]}> </p>
+		<a href="showarticle.php?article_id=<{$row[0]}>" target="" title=" <{$row[1]}> ">
+		<img src="<{$UPLOADPATH}>images/<{$row[5]}>" class="imgdow" alt="<{$row[1]}>"></a>	
+		<{$row[3]|truncate:150:"..."}>
+		<p class="pcon"><a href="showarticle.php?article_id=<{$row[0]}>" target="" title=" <{$row[1]}>">详细信息</a></P>
+		<div class="line"></div>
+		<{else}>
+				Nothing
+		<{/if}>
+		<{foreachelse}>
+		<p class="ptit"><b><a href="#" target="" title=" "> </a></b></p>
+		<p class="ptime">发布时间： 作者：  分类： </p>
+		<a href="#" target="" title=""><img src="<{$UPLOADPATH}>images/s1.jpg" class="imgdow" alt=""></a>
+		<p class="pcon"><a href="#" target="_blank" title="">详细信息</a></P>
+		<div class="line"></div>
+		<{/foreach}>	
+  </ul>
+<div class="page"><a title="Total record"><b><{$totalrecord}></b></a><b>1</b><a href="/jstt/index_2.html">2</a><a href="/jstt/index_2.html">></a><a href="/jstt/index_2.html">>></a></div>
+</div>
+
+    <!--bloglist end-->
+    <aside>
+      <div class="search">
+        <form class="searchform" method="get" action="#">
+          <input type="text" name="s" value="Search" onfocus="this.value=''" onblur="this.value='Search'">
+        </form>
+      </div>
+      <div class="tuijian">
+        <h2>最新文章</h2>
+			<ol>
+				<{foreach from=$newarticles key=i item=row}>
+				<li><span><strong><{$i+1}></strong></span><a href="showarticle.php?article_id=<{$row[0]}>"><{$row[1]|truncate:15:"..."}></a></li>
+				<{foreachelse}>	
+				<li><span><strong>1</strong></span><a href="#">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
+				<li><span><strong>2</strong></span><a href="#">励志人生-要做一个潇洒的女人</a></li>
+				<li><span><strong>3</strong></span><a href="#">女孩都有浪漫的小情怀——浪漫的求婚词</a></li>
+				<li><span><strong>4</strong></span><a href="#">Green绿色小清新的夏天-个人博客模板</a></li>
+				<{/foreach}>
+										
+			</ol>
+      </div>
+      <div class="toppic">
+        <h2>分类博客</h2>
+			<ul>
+					<{foreach from=$categorys key=i item=value}>
+					<li><a href="morearticle.php?category=<{$value[0]}>"><img src="<{$PUBLICPATH}>images/k02.jpg" ><{$value[0]}>
+							<p><{$value[1]|truncate:15:"..."}></p>
+						</a>
+					</li>
+					<{foreachelse}>	
+					<li><a href="#"><img src="<{$PUBLICPATH}>images/k01.jpg">
+							<p>unfinish</p>
+							</a></li>
+					<{/foreach}>
+			</ul>
+      </div>
+      <div class="clicks">
+        <h2>注册博友</h2>
+		<ol>	
+			<{foreach from=$users key=i item=value}>
+			<li><span><a href="morearticle.php?user=<{$value[0]}>"><{$value[0]}></a></span><a href="morearticle.php?user=<{$value[0]}>"><{$value[4]}></a></li>
+			<{foreachelse}>	
+			<{/foreach}>
+		</ol>
+      </div>
+
+    </aside>
+  </div>
+  <!--blogs end--> 
+</div>
+<!--mainbody end-->
+<{include file="./../footer.html"}>

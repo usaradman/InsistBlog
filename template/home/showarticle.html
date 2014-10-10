@@ -1,0 +1,119 @@
+<{include file="./../header.html"}>
+<!--header end-->
+<div id="mainbody">
+  <div class="blogs">
+    <div id="index_view">
+      <h2 class="t_nav"><a href="">Article</a></h2>
+      <h1 class="c_titile"><{$title}></h1>
+      <p class="box">发布时间：<{$createdate}><span>编辑：<{$author}></span>阅读（<{$readtime}>）</p>
+      <ul>	
+		<p><img src="<{$UPLOADPATH}>images/<{$originpic}>"></p>
+        <p> <{$content}></p>
+      </ul>
+	  
+      <div class="share"> 
+        <!-- Baidu Button BEGIN -->
+        <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare"> <span class="bds_more">分享到：</span> <a class="bds_qzone"></a> <a class="bds_tsina"></a> <a class="bds_tqq"></a> <a class="bds_renren"></a> <a class="bds_t163"></a> <a class="shareCount"></a> </div>
+        <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6574585" ></script> 
+        <script type="text/javascript" id="bdshell_js"></script> 
+        <script type="text/javascript">
+		document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+		</script> 
+        <!-- Baidu Button END --> 
+      </div>
+	  
+	  <!-- 评论列表 -->
+	  <div class="otherlink">
+		<h2>最新评论</h2>
+		<div class="visitors">
+		<{foreach from=$comments key=i item=row}>
+			<{if is_array($row)}>	
+				<dl>
+					<dt><img src="<{$PUBLICPATH}>images/icon_comment.png">
+					</dt>
+					<dd>GUEST
+					<time><{$row[3]}></time>
+					</dd>
+					<dd><{$row[2]}></dd>
+				</dl>
+			<{else}>
+				Nothing
+			<{/if}>
+			<{foreachelse}>
+			  <dl>
+				<dt><img src="<{$PUBLICPATH}>images/icon_comment.png">
+				</dt>
+				<dd>暂时没有评论</dd>
+			  </dl>
+			<{/foreach}>
+			</div>
+			<div class="visitors" style="float:left">
+				<!--评论 -->
+				<table width="100%" border="0" cellpadding="2" cellspacing="1">
+					<form name="form1" method="post" action="showarticle.php?article_id=<{$article_id}>">
+					<tr>
+					<td><img src="<{$PUBLICPATH}>images/icon_comment.png" style="width:67px; height:67px; margin-left:10px; float:left;"></td>
+					<td>
+					<textarea  style="resize:none;" cols="65" rows="2"  name="comment_content"></textarea>
+					</td>
+					<!---->
+					</tr>
+					<tr>
+					<td width="72"></td>
+					<td width="72"><div align="right"><input name="submit" type="submit" value=" 发表 "  style="margin-right:10px;"/></div></td>
+					</tr>
+					</form>
+				</table>
+			</div>
+		</div>
+		<br/>
+	  <!-- End 评论列表-->
+    </div>
+    <!--bloglist end-->
+    <aside>
+      <div class="search">
+        <form class="searchform" method="get" action="">
+          <input type="text" name="s" value="Search" onfocus="this.value=''" onblur="this.value='Search'">
+        </form>
+      </div>
+      <div class="tuijian">
+			<h2>最新文章</h2>
+			<ol>
+				<{foreach from=$newarticles key=i item=row}>
+				<li><span><strong><{$i+1}></strong></span><a href="showarticle.php?article_id=<{$row[0]}>"><{$row[1]}></a></li>
+				<{foreachelse}>	
+				<li><span><strong>1</strong></span><a href="#">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
+				<{/foreach}>
+					
+			</ol>
+	</div>
+	<div class="toppic">
+			<h2>分类博客</h2>
+			<ul>
+					<{foreach from=$categorys key=i item=value}>
+					<li><a href="morearticle.php?category=<{$value[0]}>"><img src="<{$PUBLICPATH}>images/k02.jpg" ><{$value[0]}>
+							<p><{$value[1]}></p>
+						</a>
+					</li>
+					<{foreachelse}>	
+					<li><a href="#"><img src="<{$PUBLICPATH}>images/k01.jpg">
+							<p>unfinish</p>
+							</a></li>
+					<{/foreach}>
+			</ul>
+	</div>
+	<div class="clicks">
+			<h2>最新注册</h2>
+			<ol>	
+				<{foreach from=$users key=i item=value}>
+				<li><span><a href="morearticle.php?user=<{$value[0]}>"><{$value[0]}></a></span><a href="morearticle.php?user=<{$value[0]}>"><{$value[4]}></a></li>
+				<{foreachelse}>	
+				<{/foreach}>
+			</ol>
+	</div>
+    </aside>
+  </div>
+  <!--blogs end--> 
+</div>
+<!--mainbody end-->
+<{include file="./../footer.html"}>

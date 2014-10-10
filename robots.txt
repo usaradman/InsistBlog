@@ -1,0 +1,14 @@
+#
+# robots.txt for Marvel Code Blog
+# Version 1.0.0
+#
+
+User-agent: *
+
+Disallow: /config/
+Disallow: /editor/
+Disallow: /keditor/
+Disallow: /libs/
+Disallow: /setup/
+Disallow: /template_c/
+Disallow: /uploads/
